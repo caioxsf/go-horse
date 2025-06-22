@@ -1,0 +1,1143 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API RESTful",
+    "version": "1.0.0",
+    "description": ""
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5001/"
+    }
+  ],
+  "paths": {
+    "/auth/token": {
+      "post": {
+        "tags": [
+          "Autenticação"
+        ],
+        "summary": "Gera um JWT para validação de acesso",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "example": "any"
+                  },
+                  "senha": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/perfil": {
+      "get": {
+        "tags": [
+          "Autenticação"
+        ],
+        "summary": "Lista as informações do perfil logado",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/usuarios": {
+      "post": {
+        "tags": [
+          "Usuarios"
+        ],
+        "summary": "End point para criar um usuario",
+        "description": "",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "example": "any"
+                  },
+                  "nome": {
+                    "example": "any"
+                  },
+                  "senha": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/classificados": {
+      "post": {
+        "tags": [
+          "Classificados"
+        ],
+        "summary": "End point para cadastrar um classificado",
+        "description": "",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/classificados"
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Classificados"
+        ],
+        "summary": "End point para atualizar um classificado",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/classificados"
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Classificados"
+        ],
+        "summary": "End point para listar todos os classificados",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/classificados/busca": {
+      "get": {
+        "tags": [
+          "Classificados"
+        ],
+        "summary": "End point para buscar classificados por nome",
+        "description": "",
+        "parameters": [
+          {
+            "name": "termo",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/meus-classificados": {
+      "get": {
+        "tags": [
+          "Classificados"
+        ],
+        "summary": "End point para listar os classificados do usuário",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/classificados/{id}": {
+      "get": {
+        "tags": [
+          "Classificados"
+        ],
+        "summary": "End point para obter um classificado pelo ID",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/classificados-ids/{id}": {
+      "get": {
+        "tags": [
+          "Classificados"
+        ],
+        "summary": "End point para listar todos os classificados com os IDS dos elementos",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/classificados/ativar/{id}": {
+      "patch": {
+        "tags": [
+          "Classificados"
+        ],
+        "summary": "End point para ativar o classificado",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/classificados/pausar/{id}": {
+      "patch": {
+        "tags": [
+          "Classificados"
+        ],
+        "summary": "End point para pausar o classificado",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/classificados/deletar/{id}": {
+      "patch": {
+        "tags": [
+          "Classificados"
+        ],
+        "summary": "End point para deletar o classificado",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/classificados/vender/{id}": {
+      "patch": {
+        "tags": [
+          "Classificados"
+        ],
+        "summary": "End point para vender o classificado",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/classificados/imagens/{id}": {
+      "get": {
+        "tags": [
+          "Classificados"
+        ],
+        "summary": "Lista as imagens de um determinado classificado",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Classificados"
+        ],
+        "summary": "Deleta uma imagem de um classificado",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/classificados/usuarios-nome/{id1}/{id2}": {
+      "get": {
+        "tags": [
+          "Classificados"
+        ],
+        "summary": "Lista as imagens de um determinado classificado",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id1",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id2",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/categoria-items-list": {
+      "get": {
+        "tags": [
+          "Categoria"
+        ],
+        "summary": "End point para listar a categoria item",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/meus-salvos": {
+      "get": {
+        "tags": [
+          "Salvo"
+        ],
+        "summary": "End point para o usuario obter os classificados salvos",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/salvo/{id}": {
+      "post": {
+        "tags": [
+          "Salvo"
+        ],
+        "summary": "End point para o usuario salvar um classificado",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/deletar-salvo/{id}": {
+      "delete": {
+        "tags": [
+          "Salvo"
+        ],
+        "summary": "End point para o usuario deletar um classificado salvo",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/filtros": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "cidade",
+            "in": "query",
+            "description": "Nome da cidade",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "tipoClassificado",
+            "in": "query",
+            "description": "tipo do classificado",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "condicao",
+            "in": "query",
+            "description": "Condição do classificado",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "ordenarData",
+            "in": "query",
+            "description": "Ordenar por data",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "precoMinimo",
+            "in": "query",
+            "description": "Valor mínimo do classificado",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "precoMaximo",
+            "in": "query",
+            "description": "Valor máximo do classificado",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/condicao": {
+      "get": {
+        "tags": [
+          "Condicões"
+        ],
+        "summary": "End point para listar as condições",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/tipo-imovel": {
+      "get": {
+        "tags": [
+          "Tipo Imovel"
+        ],
+        "summary": "End point para listar os tipos de imoveis",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/tipo-classificado": {
+      "get": {
+        "tags": [
+          "Tipo Classificado"
+        ],
+        "summary": "End point para listar os tipos de classificados",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/modelo-veiculos": {
+      "get": {
+        "tags": [
+          "Modelo veiculos"
+        ],
+        "summary": "End point para listar os modelos dos veiculos",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/cidades": {
+      "get": {
+        "tags": [
+          "Cidades"
+        ],
+        "summary": "End point para listar as cidades",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/chat/msgs": {
+      "post": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "sala_id": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/chat/room": {
+      "post": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user1": {
+                    "example": "any"
+                  },
+                  "user2": {
+                    "example": "any"
+                  },
+                  "cla_id": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/chat/mensagens-recebidas": {
+      "get": {
+        "tags": [
+          "Chat"
+        ],
+        "summary": "End point para listar os chat em aberto ",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "classificado_teste": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 1
+          },
+          "titulo": {
+            "type": "string",
+            "example": "Xbox 360"
+          },
+          "descricao": {
+            "type": "string",
+            "example": "Video game para jogar jogos"
+          },
+          "valor": {
+            "type": "number",
+            "example": 10.5
+          },
+          "condicaoId": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number",
+                "example": 1
+              }
+            }
+          },
+          "situacaoId": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number",
+                "example": 1
+              }
+            }
+          },
+          "tipoId": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number",
+                "example": 1
+              }
+            }
+          },
+          "cidadeId": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number",
+                "example": 1
+              }
+            }
+          },
+          "quartos": {
+            "type": "number",
+            "example": 1
+          },
+          "banheiros": {
+            "type": "number",
+            "example": 1
+          },
+          "metros_quadrados": {
+            "type": "number",
+            "example": 20
+          },
+          "tipo_imovel": {
+            "type": "number",
+            "example": 1
+          }
+        }
+      },
+      "classificado_atualizar": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 1
+          },
+          "titulo": {
+            "type": "string",
+            "example": "Xbox 360"
+          },
+          "descricao": {
+            "type": "string",
+            "example": "Video game para jogar jogos"
+          },
+          "valor": {
+            "type": "number",
+            "example": 10.5
+          },
+          "condicaoId": {
+            "type": "number",
+            "example": 1
+          },
+          "situacaoId": {
+            "type": "number",
+            "example": 1
+          },
+          "tipoId": {
+            "type": "number",
+            "example": 1
+          },
+          "cidadeId": {
+            "type": "number",
+            "example": 1
+          },
+          "quartos": {
+            "type": "number",
+            "example": 1
+          },
+          "banheiros": {
+            "type": "number",
+            "example": 1
+          },
+          "metros_quadrados": {
+            "type": "number",
+            "example": 20
+          },
+          "tipo_imovel": {
+            "type": "number",
+            "example": 1
+          },
+          "ano": {
+            "type": "number",
+            "example": 2015
+          },
+          "kilometragem": {
+            "type": "number",
+            "example": 129000
+          },
+          "modeloId": {
+            "type": "number",
+            "example": 233
+          },
+          "categoriaId": {
+            "type": "number",
+            "example": 1
+          }
+        }
+      },
+      "filtros": {
+        "type": "object",
+        "properties": {
+          "cidade": {
+            "type": "number",
+            "example": 254
+          },
+          "tipoClassificado": {
+            "type": "number",
+            "example": 1
+          },
+          "condicao": {
+            "type": "number",
+            "example": 1
+          },
+          "ordenarData": {
+            "type": "boolean",
+            "example": true
+          },
+          "ordenarPreco": {
+            "type": "boolean",
+            "example": true
+          }
+        }
+      },
+      "classificados": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1,
+            "required": false
+          },
+          "titulo": {
+            "type": "string",
+            "required": true
+          },
+          "descricao": {
+            "type": "string",
+            "required": true
+          },
+          "valor": {
+            "type": "number",
+            "required": true
+          },
+          "condicaoId": {
+            "type": "integer",
+            "required": true
+          },
+          "situacaoId": {
+            "type": "integer",
+            "required": true
+          },
+          "tipoId": {
+            "type": "integer",
+            "required": true
+          },
+          "cidadeId": {
+            "type": "integer",
+            "required": true
+          },
+          "quartos": {
+            "type": "integer",
+            "required": false
+          },
+          "banheiros": {
+            "type": "integer",
+            "required": false
+          },
+          "metros_quadrados": {
+            "type": "integer",
+            "required": false
+          },
+          "tipo_imovel": {
+            "type": "integer",
+            "required": false
+          },
+          "ano": {
+            "type": "integer",
+            "required": false
+          },
+          "kilometragem": {
+            "type": "integer",
+            "required": false
+          },
+          "modeloId": {
+            "type": "integer",
+            "required": false
+          },
+          "categoriaId": {
+            "type": "integer",
+            "required": true
+          },
+          "imagens": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "binary"
+            },
+            "required": false
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  }
+}
