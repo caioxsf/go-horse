@@ -23,7 +23,7 @@ export default function ChatRoom({ classificado }) {
 
     useEffect(() => {
         if (dialogOpen) {
-            socketRef.current = io("http://localhost:5001");
+            socketRef.current = io("https://projetos-go-horse-client.lp3jkk.easypanel.host");
         } else if (socketRef.current) {
             socketRef.current.disconnect();
             socketRef.current = null;
