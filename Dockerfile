@@ -5,16 +5,16 @@ FROM node:18
 WORKDIR /app
 
 # Etapa 3: Copiar package.json e package-lock.json
-COPY package*.json . 
+COPY package*.json ./
 
-# Etapa 4: Instalar dependências
+# Etapa 4: Instalar dependências (ignora conflitos de peer deps)
 RUN npm install --legacy-peer-deps
 
 # Etapa 5: Copiar o restante da aplicação
 COPY . .
 
-# Etapa 6: Expor a porta usada pela aplicação
+# Etapa 6: Expor a porta usada pelo app
 EXPOSE 5001
 
-# Etapa 7: Gerar Swagger e rodar o servidor
-CMD npm run swagger && npm start
+# Etapa 7: Comando para rodar o servidor
+CMD ["node", "swagger.js"]
