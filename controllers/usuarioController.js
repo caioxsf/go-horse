@@ -1,5 +1,5 @@
 import { gerarHash } from "../hash/hashUtils.js";
-import UsuarioEntity from "../entities/usuarioEntity.js";
+import UsuarioEntity from "../entities/UsuarioEntity.js";
 import UsuarioRepository from "../repositories/usuarioRepository.js";
 
 export default class UsuarioController {
