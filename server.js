@@ -72,5 +72,6 @@ app.use(errorHandler);
 
 
 server.listen(5001, function () {
-  console.log("backend em execução");
+  console.log("backend em execução e iniciado.");
+
 });
