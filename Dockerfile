@@ -7,8 +7,8 @@ WORKDIR /app
 # Etapa 3: Copiar package.json e package-lock.json
 COPY package*.json ./
 
-# Etapa 4: Instalar dependências (ignora conflitos de peer deps)
-RUN npm install --legacy-peer-deps
+# Etapa 4: Instalar dependências (inclui opcionais - importante para sharp)
+RUN npm install --include=optional --legacy-peer-deps
 
 # Etapa 5: Copiar o restante da aplicação
 COPY . .
