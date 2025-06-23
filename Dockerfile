@@ -8,13 +8,13 @@ WORKDIR /app
 COPY package*.json . 
 
 # Etapa 4: Instalar dependências
-RUN npm install
+RUN npm install --legacy-peer-deps
 
 # Etapa 5: Copiar o restante da aplicação
 COPY . .
 
 # Etapa 6: Expor a porta usada pela aplicação
-EXPOSE 3001
+EXPOSE 5001
 
 # Etapa 7: Gerar Swagger e rodar o servidor
 CMD npm run swagger && npm start
