@@ -1,5 +1,5 @@
 import Database from "../db/database.js";
-import SalvoEntity from "../entities/SalvoEntity.js";
+import SalvoEntity from "../entities/salvoEntity.js";
 
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime.js';
