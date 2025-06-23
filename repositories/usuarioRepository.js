@@ -1,6 +1,6 @@
 import { resolveObjectURL } from "buffer";
 import Database from "../db/database.js";
-import UsuarioEntity from "../entities/usuarioEntity.js";
+import UsuarioEntity from "../entities/UsuarioEntity.js";
 
 export default class UsuarioRepository {
   #database;
