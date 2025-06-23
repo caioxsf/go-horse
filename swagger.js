@@ -4,7 +4,8 @@ const doc = {
   info: {
     title: "API RESTful",
   },
-  host: "localhost:5001",
+  host: "projetos-go-horse-api.lp3jkk.easypanel.host",
+  schemes: ["https"],
   components: {
     schemas: {
       classificado_teste: {
