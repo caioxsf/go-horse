@@ -35,14 +35,14 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "https://projetos-go-horse-client.lp3jkk.easypanel.host/",
+    origin: "https://projetos-go-horse-client.lp3jkk.easypanel.host",
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
     credentials: true
   },
 });
 
 app.use(cors({
-  origin: 'https://projetos-go-horse-client.lp3jkk.easypanel.host/', 
+  origin: 'https://projetos-go-horse-client.lp3jkk.easypanel.host', 
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
   credentials: true
 }));
