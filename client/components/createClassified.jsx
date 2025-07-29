@@ -342,20 +342,20 @@ export default function CreateClassified({ classificadoAlteracao }) {
             ))}
           </select>
 
-          {tipoSelecionado === "4" && (
+          {tipoSelecionado === "1" && (
             <CategoriaItemsForm
               onCategoriaSelecionada={setCategoriaSelecionada}
               categoriaSelecionada={categoriaSelecionada}
             ></CategoriaItemsForm>
           )}
-          {tipoSelecionado === "5" && (
+          {tipoSelecionado === "2" && (
             <ImovelForm
               imovelInfo={imovelInfo}
               setImovelInfo={setImovelInfo}
               tipoImovelSelecionado={imovelInfo.tipo_imovel}
             ></ImovelForm>
           )}
-          {tipoSelecionado === "6" && (
+          {tipoSelecionado === "3" && (
             <VeiculoForm
               veiculoInfo={veiculoInfo}
               setVeiculoInfo={setVeiculoInfo}
