@@ -80,15 +80,15 @@ export default function CreateClassified({ classificadoAlteracao }) {
     }
   }
 
-  // const handleRemoverImagem = async (index) => {
-  //   const imagem = listaImagens[index];
-  //   await apiClient.delete(`/classificados/imagens/${imagem.id}`);
+  const handleRemoverImagem = async (index) => {
+    const imagem = listaImagens[index];
+    await apiClient.delete(`/classificados/imagens/${imagem.id}`);
 
-  //   const novaLista = [...listaImagens];
-  //   novaLista.splice(index, 1);
-  //   setListaImagens(novaLista);
+    const novaLista = [...listaImagens];
+    novaLista.splice(index, 1);
+    setListaImagens(novaLista);
 
-  // };
+  };
 
   async function atualizarClassificado(idClassificado) {
     if (
@@ -342,20 +342,20 @@ export default function CreateClassified({ classificadoAlteracao }) {
             ))}
           </select>
 
-          {tipoSelecionado === "1" && (
+          {tipoSelecionado === "4" && (
             <CategoriaItemsForm
               onCategoriaSelecionada={setCategoriaSelecionada}
               categoriaSelecionada={categoriaSelecionada}
             ></CategoriaItemsForm>
           )}
-          {tipoSelecionado === "2" && (
+          {tipoSelecionado === "5" && (
             <ImovelForm
               imovelInfo={imovelInfo}
               setImovelInfo={setImovelInfo}
               tipoImovelSelecionado={imovelInfo.tipo_imovel}
             ></ImovelForm>
           )}
-          {tipoSelecionado === "3" && (
+          {tipoSelecionado === "6" && (
             <VeiculoForm
               veiculoInfo={veiculoInfo}
               setVeiculoInfo={setVeiculoInfo}
