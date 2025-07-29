@@ -80,15 +80,15 @@ export default function CreateClassified({ classificadoAlteracao }) {
     }
   }
 
-  const handleRemoverImagem = async (index) => {
-    const imagem = listaImagens[index];
-    await apiClient.delete(`/classificados/imagens/${imagem.id}`);
+  // const handleRemoverImagem = async (index) => {
+  //   const imagem = listaImagens[index];
+  //   await apiClient.delete(`/classificados/imagens/${imagem.id}`);
 
-    const novaLista = [...listaImagens];
-    novaLista.splice(index, 1);
-    setListaImagens(novaLista);
+  //   const novaLista = [...listaImagens];
+  //   novaLista.splice(index, 1);
+  //   setListaImagens(novaLista);
 
-  };
+  // };
 
   async function atualizarClassificado(idClassificado) {
     if (
