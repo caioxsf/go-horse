@@ -79,7 +79,7 @@ app.use("/", catchError(chatRoute));
 app.use(errorHandler);
 
 
-server.listen(5001, function () {
+server.listen(5000, function () {
   console.log("backend em execução e iniciado.");
 
 });
