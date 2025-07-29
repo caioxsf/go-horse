@@ -32,6 +32,20 @@ import CidadeRoute from './routes/cidadeRoute.js'
 import chatRoute from './routes/chatRoute.js'
 
 const app = express();
+
+app.use(cors({
+  origin: 'https://projetos-go-horse-client.lp3jkk.easypanel.host', 
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+  credentials: true
+}));
+
+app.options('*', cors({
+  origin: 'https://projetos-go-horse-client.lp3jkk.easypanel.host',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+  credentials: true
+}));
+
+
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
@@ -40,12 +54,6 @@ const io = new Server(server, {
     credentials: true
   },
 });
-
-app.use(cors({
-  origin: 'https://projetos-go-horse-client.lp3jkk.easypanel.host', 
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
-  credentials: true
-}));
 
 socketInit(io)
 
